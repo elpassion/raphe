@@ -1,27 +1,5 @@
 const isEqualWith = require("lodash.isequalwith");
-
-class CallFactory {
-  constructor(expectedErrors) {
-    this.expectedErrors = expectedErrors || [];
-  }
-
-  callFor(fn) {
-    return args => {
-      try {
-        return fn(...args);
-      } catch (e) {
-        const errorWasExpected = this.expectedErrors
-          .map(expectedError => e instanceof expectedError)
-          .includes(true);
-        if (!errorWasExpected) {
-          throw e;
-        } else {
-          return e;
-        }
-      }
-    };
-  }
-}
+const CallFactory = require("./CallFactory");
 
 class Raphe {
   constructor({ recordingRepository }) {
