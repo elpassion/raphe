@@ -11,6 +11,7 @@ class Raphe {
     { old: oldFn, args, record, new: newFn, expectedErrors, callBoth }
   ) {
     const callFactory = new CallFactory(expectedErrors);
+
     if (callBoth) {
       const newResult = callFactory.callFor(newFn)(args);
       const oldResult = callFactory.callFor(oldFn)(args);
