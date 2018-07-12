@@ -1,0 +1,25 @@
+{
+  "name": "raphe",
+  "version": "0.0.8",
+  "description": "Raphe",
+  "main": "index.js",
+  "keywords": [
+    "refactoring",
+    "javascript"
+  ],
+  "repository": "https://github.com/elpassion/raphe.git",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Michał Warda, Piotr Zawada",
+  "license": "ISC",
+  "dependencies": {
+    "cross-fetch": "^2.2.2",
+    "lodash.isequalwith": "^4.4.0",
+    "sqlite3": "^4.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "jest": "^23.2.0"
+  }
+}

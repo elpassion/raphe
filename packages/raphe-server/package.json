@@ -1,0 +1,25 @@
+{
+  "name": "raphe-server",
+  "version": "0.0.8",
+  "description": "Raphe server",
+  "main": "index.js",
+  "keywords": [
+    "refactoring",
+    "javascript"
+  ],
+  "repository": "https://github.com/elpassion/raphe-server.git",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "raphe-server": "index.js"
+  },
+  "author": "Michał Warda, Piotr Zawada",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "raphe": "^0.0.8",
+    "yargs": "^12.0.1"
+  }
+}
