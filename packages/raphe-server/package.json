@@ -1,6 +1,6 @@
 {
   "name": "raphe-server",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Raphe server",
   "main": "lib/index.js",
   "keywords": [
