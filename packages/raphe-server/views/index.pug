@@ -1,12 +1,17 @@
 html
   head
     title Raphe Server Recordings
+    link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B", crossorigin="anonymous")
     script.
       function removeRow(id) {
         fetch(`/recordings/${id}`, { method: "DELETE" }).then(() => { window.location.reload() })
       }
       console.log("Welcome to raphe recordings");
   body
-    ul 
-      each recording in recordings
-        li(onclick='removeRow(' + recording.id + ')')= "Name: " + recording.name + ", Args: " + JSON.stringify(recording.args) + " Result: " + JSON.stringify(recording.result)
+    div(class='container')
+      p
+      p(class='text-center')= "List of recordings"
+      ul(class='list-group row sm-6' style='margin: auto;')
+        each recording in recordings
+          li(onclick='removeRow(' + recording.id + ')' class='list-group-item' style='display: flex; justify-content: space-between;')= "Name: " + recording.name + ", Args: " + JSON.stringify(recording.args) + " Result: " + JSON.stringify(recording.result)
+            button(class='btn btn-outline-danger btn-sm')= 'Delete'
