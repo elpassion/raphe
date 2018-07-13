@@ -1,6 +1,6 @@
 {
   "name": "raphe-react",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "",
   "main": "lib/index.js",
   "keywords": [
@@ -16,7 +16,7 @@
   "author": "Michał Warda, Piotr Zawada",
   "license": "ISC",
   "dependencies": {
-    "raphe": "^0.0.8",
+    "raphe": "^0.0.9",
     "react": "^16.4.1",
     "react-test-renderer": "^16.4.1"
   },
