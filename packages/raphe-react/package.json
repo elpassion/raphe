@@ -1,27 +1,25 @@
 {
-  "name": "raphe",
-  "version": "0.0.7",
-  "description": "Raphe",
-  "main": "index.js",
+  "name": "raphe-react",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
   "keywords": [
     "refactoring",
     "javascript"
   ],
   "repository": "https://github.com/elpassion/raphe.git",
   "scripts": {
-    "test": "jest",
+    "test": "echo \"Error: no test specified\"",
     "build": "babel ./src -d ./lib"
   },
   "author": "Michał Warda, Piotr Zawada",
   "license": "ISC",
   "dependencies": {
-    "cross-fetch": "^2.2.2",
-    "lodash.isequalwith": "^4.4.0",
-    "sqlite3": "^4.0.1"
+    "raphe": "0.0.7",
+    "react": "^16.4.1",
+    "react-test-renderer": "^16.4.1"
   },
   "devDependencies": {
-    "eslint": "^5.0.1",
-    "jest": "^23.2.0",
     "babel-cli": "^6.26.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1"

@@ -7,9 +7,10 @@
     "refactoring",
     "javascript"
   ],
-  "repository": "https://github.com/elpassion/raphe-server.git",
+  "repository": "https://github.com/elpassion/raphe.git",
   "scripts": {
-    "test": "echo \"Error: no test specified\""
+    "test": "echo \"Error: no test specified\"",
+    "build": "babel ./src -d ./lib"
   },
   "bin": {
     "raphe-server": "index.js"
@@ -21,5 +22,10 @@
     "express": "^4.16.3",
     "raphe": "^0.0.7",
     "yargs": "^12.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
   }
 }

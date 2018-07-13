@@ -1,4 +1,4 @@
-const Raphe = require("../Raphe.js");
+const Raphe = require("../src/Raphe.js");
 
 describe("Raphe.create", () => {
   let recordingRepository;
