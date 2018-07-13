@@ -73,7 +73,8 @@ var SQLRecordingRepository = function () {
             switch (_context2.prev = _context2.next) {
               case 0:
                 return _context2.abrupt("return", new Promise(function (resolve, reject) {
-                  _this2.db.all("SELECT name, args, result FROM recordings WHERE name = ?", name, function (err, rows) {
+                  var whereQuery = name ? "WHERE name = ?" : "";
+                  _this2.db.all("SELECT name, args, result FROM recordings " + whereQuery, name, function (err, rows) {
                     if (err) {
                       reject(err);
                     } else {

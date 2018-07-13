@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import 'babel-polyfill';
+
 const argv = require('yargs').argv;
 
 const express = require("express");
@@ -13,6 +15,12 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'pug');
+
+app.get("/", async (req, res) => {
+  const recordings = await recordingRepository.getAll();
+  res.render('index', { recordings });
+})
 
 app.get("/recordings/:name", async (req, res) => {
   const { name } = req.params;

@@ -1,0 +1,9 @@
+html
+  head
+    title Raphe Server Recordings
+    script.
+      console.log("Welcome to raphe recordings");
+  body
+    ul 
+      each recording in recordings
+        li= "Name: " + recording.name + ", Args: " + JSON.stringify(recording.args) + " Result: " + JSON.stringify(recording.result)

@@ -25,8 +25,9 @@ export default class SQLRecordingRepository {
 
   async getAll(name) {
     return new Promise((resolve, reject) => {
+      const whereQuery = name ? "WHERE name = ?" : "";
       this.db.all(
-        "SELECT name, args, result FROM recordings WHERE name = ?",
+        `SELECT name, args, result FROM recordings ${whereQuery}`,
         name,
         (err, rows) => {
           if (err) {
