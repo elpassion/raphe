@@ -10,7 +10,8 @@
   "repository": "https://github.com/elpassion/raphe.git",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
-    "build": "babel ./src -d ./lib"
+    "build": "babel ./src -d ./lib",
+    "watch": "babel ./src -d ./lib --watch"
   },
   "author": "Michał Warda, Piotr Zawada",
   "license": "ISC",
