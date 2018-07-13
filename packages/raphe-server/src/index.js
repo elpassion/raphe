@@ -28,7 +28,7 @@ app.get("/recordings/:name", async (req, res) => {
   res.send(JSON.stringify(recordings));
 })
 
-app.delete("/recordings/:id", async () => {
+app.delete("/recordings/:id", async (req, res) => {
   const { id } = req.params;
   await recordingRepository.delete(id);
   res.status(204).send();

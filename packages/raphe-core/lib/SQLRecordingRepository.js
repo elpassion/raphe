@@ -80,6 +80,7 @@ var SQLRecordingRepository = function () {
                     } else {
                       resolve(rows.map(function (row) {
                         return {
+                          id: row.id,
                           name: row.name,
                           args: JSON.parse(row.args),
                           result: JSON.parse(row.result)

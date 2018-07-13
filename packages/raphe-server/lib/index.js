@@ -44,11 +44,17 @@ app.get("/recordings/:name", (() => {
   };
 })());
 
-app.delete("/recordings/:id", _asyncToGenerator(function* () {
-  const { id } = req.params;
-  yield recordingRepository.delete(id);
-  res.status(204).send();
-}));
+app.delete("/recordings/:id", (() => {
+  var _ref3 = _asyncToGenerator(function* (req, res) {
+    const { id } = req.params;
+    yield recordingRepository.delete(id);
+    res.status(204).send();
+  });
+
+  return function (_x5, _x6) {
+    return _ref3.apply(this, arguments);
+  };
+})());
 
 app.post("/recordings", (req, res) => {
   const { name, args, result } = req.body;

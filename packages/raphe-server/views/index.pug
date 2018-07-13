@@ -2,8 +2,11 @@ html
   head
     title Raphe Server Recordings
     script.
+      function removeRow(id) {
+        fetch(`/recordings/${id}`, { method: "DELETE" }).then(() => { window.location.reload() })
+      }
       console.log("Welcome to raphe recordings");
   body
     ul 
       each recording in recordings
-        li= "Name: " + recording.name + ", Args: " + JSON.stringify(recording.args) + " Result: " + JSON.stringify(recording.result)
+        li(onclick='removeRow(' + recording.id + ')')= "Name: " + recording.name + ", Args: " + JSON.stringify(recording.args) + " Result: " + JSON.stringify(recording.result)

@@ -35,6 +35,7 @@ export default class SQLRecordingRepository {
           } else {
             resolve(
               rows.map(row => ({
+                id: row.id,
                 name: row.name,
                 args: JSON.parse(row.args),
                 result: JSON.parse(row.result)
