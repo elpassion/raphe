@@ -27,7 +27,7 @@ export default class SQLRecordingRepository {
     return new Promise((resolve, reject) => {
       const whereQuery = name ? "WHERE name = ?" : "";
       this.db.all(
-        `SELECT name, args, result FROM recordings ${whereQuery}`,
+        `SELECT id, name, args, result FROM recordings ${whereQuery}`,
         name,
         (err, rows) => {
           if (err) {
@@ -44,6 +44,18 @@ export default class SQLRecordingRepository {
         }
       );
     });
+  }
+
+  async delete(id) {
+    return new Promise((resolve, reject) => {
+      this.db.run("DELETE FROM recordings WHERE id = ?", id, err => {
+        if (err) { 
+          reject(err)
+        } else {
+          resolve()
+        };
+      });
+    })
   }
 
   async deleteAll(name) {

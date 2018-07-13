@@ -44,11 +44,11 @@ app.get("/recordings/:name", (() => {
   };
 })());
 
-app.delete("/recordings/:name", () => {
-  const { name } = req.params;
-  recordingRepository.deleteAll(name);
+app.delete("/recordings/:id", _asyncToGenerator(function* () {
+  const { id } = req.params;
+  yield recordingRepository.delete(id);
   res.status(204).send();
-});
+}));
 
 app.post("/recordings", (req, res) => {
   const { name, args, result } = req.body;

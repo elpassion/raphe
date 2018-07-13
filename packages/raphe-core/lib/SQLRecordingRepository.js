@@ -74,7 +74,7 @@ var SQLRecordingRepository = function () {
               case 0:
                 return _context2.abrupt("return", new Promise(function (resolve, reject) {
                   var whereQuery = name ? "WHERE name = ?" : "";
-                  _this2.db.all("SELECT name, args, result FROM recordings " + whereQuery, name, function (err, rows) {
+                  _this2.db.all("SELECT id, name, args, result FROM recordings " + whereQuery, name, function (err, rows) {
                     if (err) {
                       reject(err);
                     } else {
@@ -104,20 +104,24 @@ var SQLRecordingRepository = function () {
       return getAll;
     }()
   }, {
-    key: "deleteAll",
+    key: "delete",
     value: function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(name) {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(id) {
         var _this3 = this;
 
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                this.db.serialize(function () {
-                  _this3.db.run("DELETE FROM recordings WHERE name = ?", name, function (err) {
-                    if (err) throw err;
+                return _context3.abrupt("return", new Promise(function (resolve, reject) {
+                  _this3.db.run("DELETE FROM recordings WHERE id = ?", id, function (err) {
+                    if (err) {
+                      reject(err);
+                    } else {
+                      resolve();
+                    };
                   });
-                });
+                }));
 
               case 1:
               case "end":
@@ -127,8 +131,38 @@ var SQLRecordingRepository = function () {
         }, _callee3, this);
       }));
 
-      function deleteAll(_x3) {
+      function _delete(_x3) {
         return _ref4.apply(this, arguments);
+      }
+
+      return _delete;
+    }()
+  }, {
+    key: "deleteAll",
+    value: function () {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(name) {
+        var _this4 = this;
+
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                this.db.serialize(function () {
+                  _this4.db.run("DELETE FROM recordings WHERE name = ?", name, function (err) {
+                    if (err) throw err;
+                  });
+                });
+
+              case 1:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function deleteAll(_x4) {
+        return _ref5.apply(this, arguments);
       }
 
       return deleteAll;
@@ -136,10 +170,10 @@ var SQLRecordingRepository = function () {
   }, {
     key: "createTable",
     value: function createTable() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.db.serialize(function () {
-        _this4.db.run("\n        CREATE TABLE IF NOT EXISTS recordings (\n          id INTEGER PRIMARY KEY AUTOINCREMENT, \n          name TEXT, \n          args BLOB, \n          result BLOB\n        )");
+        _this5.db.run("\n        CREATE TABLE IF NOT EXISTS recordings (\n          id INTEGER PRIMARY KEY AUTOINCREMENT, \n          name TEXT, \n          args BLOB, \n          result BLOB\n        )");
       });
     }
   }]);
