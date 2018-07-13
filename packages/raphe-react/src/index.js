@@ -1,8 +1,8 @@
 import React from "react";
 import TestRenderer from "react-test-renderer";
-import {ServerRecordingRepository, Raphe} from "raphe";
+import ServerRecordingRepository from "raphe/lib/ServerRecordingRepository";
 
-const recordingRepository = new ServerRecordingRepository("http://localhost:6970/recordings");
+const recordingRepository = new ServerRecordingRepository("http://localhost:3001/recordings");
 // const raphe = new Raphe({recordingRepository});
 
 export class Recording extends React.Component {

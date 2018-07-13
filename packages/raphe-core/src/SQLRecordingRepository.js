@@ -1,6 +1,6 @@
-const sqlite3 = require("sqlite3");
+import sqlite3 from "sqlite3";
 
-class SQLRecordingRepository {
+export default class SQLRecordingRepository {
   constructor(dbPath) {
     this.db = new sqlite3.Database(dbPath);
     this.createTable();
@@ -65,5 +65,3 @@ class SQLRecordingRepository {
     });
   }
 }
-
-module.exports = SQLRecordingRepository;

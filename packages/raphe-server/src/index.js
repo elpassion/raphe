@@ -6,7 +6,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require('cors');
 
-const { SQLRecordingRepository } = require("raphe");
+import { SQLRecordingRepository } from "raphe";
 const recordingRepository = new SQLRecordingRepository(argv._[0]);
 
 const app = express();

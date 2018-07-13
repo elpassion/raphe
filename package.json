@@ -8,6 +8,7 @@
 		"test": "lerna run test",
 		"build": "lerna run build",
 		"watch": "lerna run --parallel watch",
-		"add": "lerna add"
+		"add": "lerna add",
+		"clean": "lerna clean"
 	}
 }

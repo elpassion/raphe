@@ -1,8 +1,8 @@
-const Raphe = require("./Raphe");
-const SQLRecordingRepository = require("./SQLRecordingRepository");
-const ServerRecordingRepository = require("./ServerRecordingRepository");
+import Raphe from './Raphe';
+import SQLRecordingRepository from './SQLRecordingRepository';
+import ServerRecordingRepository from './ServerRecordingRepository';
 
-module.exports = {
+export { 
   Raphe,
   SQLRecordingRepository,
   ServerRecordingRepository
