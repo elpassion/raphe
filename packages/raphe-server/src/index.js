@@ -16,6 +16,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
+app.use(express.static(__dirname + '../'));
 
 app.get("/", async (req, res) => {
   const recordings = await recordingRepository.getAll();

@@ -11,7 +11,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\"",
     "build": "babel ./src -d ./lib",
-    "watch": "babel ./src -d ./lib --watch"
+    "watch": "babel ./src -d ./lib --watch",
+    "start": "node ./lib/index.js ~/db.sqlite --port 3001"
   },
   "bin": {
     "raphe-server": "lib/index.js"
