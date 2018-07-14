@@ -1,6 +1,6 @@
 {
   "name": "raphe",
-  "version": "0.0.10",
+  "version": "0.0.12",
   "description": "Raphe",
   "main": "lib/index.js",
   "keywords": [

@@ -1,11 +1,11 @@
 {
   "name": "raphe-example",
-  "version": "0.0.10",
+  "version": "0.0.12",
   "private": true,
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "raphe": "^0.0.10",
-    "raphe-react": "^0.0.10",
+    "raphe": "^0.0.12",
+    "raphe-react": "^0.0.12",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
