@@ -24,21 +24,27 @@ var Raphe = function () {
           record = _ref2.record,
           newFn = _ref2.new,
           expectedErrors = _ref2.expectedErrors,
-          callBoth = _ref2.callBoth;
+          callBoth = _ref2.callBoth,
+          resultSerializer = _ref2.resultSerializer;
 
       var callFactory = new CallFactory(expectedErrors);
 
       if (callBoth) {
         var newResult = callFactory.callFor(newFn)(args);
         var oldResult = callFactory.callFor(oldFn)(args);
-        if (!isEqualWith(newResult, oldResult)) {
+        var serializedNewResult = JSON.stringify(resultSerializer ? resultSerializer(newResult) : newResult);
+        var serializedOldResult = JSON.stringify(resultSerializer ? resultSerializer(oldResult) : oldResult);
+        if (!isEqualWith(serializedNewResult, serializedOldResult)) {
           throw new Error("ResultMismatch");
         }
         return newResult;
       } else {
         var calledFunction = record ? oldFn : newFn || oldFn;
         var result = callFactory.callFor(calledFunction)(args);
-        if (record) this.recordingRepository.create({ name: name, args: args, result: result });
+        if (record) {
+          var serializedResult = resultSerializer ? resultSerializer(result) : result;
+          this.recordingRepository.create({ name: name, args: args, result: serializedResult });
+        }
         return result;
       }
     }

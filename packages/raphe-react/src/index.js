@@ -1,30 +1,25 @@
 import React from "react";
 import TestRenderer from "react-test-renderer";
 import ServerRecordingRepository from "raphe/lib/ServerRecordingRepository";
+import Raphe from "raphe/lib/Raphe";
 
-const recordingRepository = new ServerRecordingRepository("http://localhost:3001/recordings");
-// const raphe = new Raphe({recordingRepository});
+const recordingRepository = new ServerRecordingRepository(
+  "http://localhost:3001/recordings"
+);
+const raphe = new Raphe({ recordingRepository });
+
+export const resultSerializer = result => {
+  return TestRenderer.create(result).toJSON();
+};
 
 export class Recording extends React.Component {
-  componentDidMount() {
-    if (process.env.NODE_ENV !== 'test') this.record();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (process.env.NODE_ENV !== 'test' && (prevProps !== this.props || prevState !== this.state)) this.record();
-  }
-
-  record = async () => {
-    try {
-      const result = TestRenderer.create(this.props.children).toJSON();
-      const response = await recordingRepository.create({name: this.props.name, args: this.props.args, result});
-      console.log(response);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
   render() {
-    return this.props.children;
+    const { name, ...options } = this.props;
+    const record = process.env.NODE_ENV !== "test" && options.record;
+    return raphe.create(this.props.name, {
+      ...options,
+      record,
+      resultSerializer
+    });
   }
 }

@@ -35,6 +35,23 @@ describe("Raphe.create", () => {
     });
   });
 
+  test("saves serialized result to db if resultSerializer is passed", () => {
+    const fnResult = 2;
+    const fnArgs = [1, 1];
+    recordingRepository.create.mockReturnValueOnce(fnResult);
+    const result = raphe.create(recordingName, {
+      old: jest.fn().mockReturnValueOnce(fnResult),
+      args: fnArgs,
+      record: true,
+      resultSerializer: (result) => result.toString()
+    });
+    expect(recordingRepository.create).toHaveBeenCalledWith({
+      name: recordingName,
+      args: fnArgs,
+      result: "2"
+    });
+  });
+
   test("saves function params, name and thrown error to db if the error is in expectedErrors", () => {
     class SuperError {}
     const fnArgs = [1, 1];

@@ -1,12 +1,13 @@
 import React from "react";
-import TestRenderer from "react-test-renderer";
 import Toggle from "./Toggle";
+import { resultSerializer } from "raphe-react";
 
-test("renders without crashing", async () => {
-  const recordings = await raphe.getAllWithName("abc");
+test("Raphe Toggle", async () => {
+  const recordings = await raphe.getAllWithName("Toggle");
+  console.log(recordings.length);
 
   recordings.forEach(recording => {
-    const result = TestRenderer.create(<Toggle {...recording.args} />).toJSON();
+    const result = resultSerializer(<Toggle {...recording.args[0]} />);
     expect(recording.result).toEqual(result);
   });
 });
