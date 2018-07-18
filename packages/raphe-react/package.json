@@ -1,6 +1,6 @@
 {
   "name": "raphe-react",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "description": "",
   "main": "lib/index.js",
   "keywords": [
@@ -17,7 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "pretty-format": "^23.2.0",
-    "raphe": "^0.0.12",
+    "raphe": "^0.0.14",
     "react": "^16.4.1",
     "react-test-renderer": "^16.4.1"
   },

@@ -1,6 +1,6 @@
 {
   "name": "raphe-server",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Raphe server",
   "main": "lib/index.js",
   "keywords": [
@@ -25,7 +25,7 @@
     "express": "^4.16.3",
     "pretty-format": "^23.2.0",
     "pug": "^2.0.3",
-    "raphe": "^0.0.12",
+    "raphe": "^0.0.14",
     "serialize-javascript": "^1.5.0",
     "yargs": "^12.0.1"
   },
