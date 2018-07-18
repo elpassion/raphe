@@ -1,20 +1,8 @@
 import React from "react";
 import { Recording } from "raphe-react";
 
-class ToggleImpl extends React.Component {
-  state = { on: false };
-
-  toggle = () => {
-    this.setState({ on: !this.state.on });
-  }
-
-  render() {
-    return this.state.on ? <div>ON</div> : <div onClick={() => this.setState({on: true})}>OFF</div>;
-  }
-}
-
-export const NewToggleImpl = props => {
-  return props.on ? <div>ON</div> : <div onClick={() => {}}>OFF</div>;
+export const ToggleImpl = props => {
+  return <button onClick={props.toggle}>{props.on ? "ON" : "OFF"}</button>;
 };
 
 const Toggle = props => {
@@ -22,9 +10,7 @@ const Toggle = props => {
     <Recording
       name="Toggle"
       args={[props]}
-      old={(props) => <ToggleImpl {...props} />}
-      new={(props) => <NewToggleImpl {...props} />}
-      callBoth
+      old={props => <ToggleImpl {...props} />}
     />
   );
 };

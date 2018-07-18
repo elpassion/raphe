@@ -16,6 +16,7 @@
   "author": "Michał Warda, Piotr Zawada",
   "license": "ISC",
   "dependencies": {
+    "pretty-format": "^23.2.0",
     "raphe": "^0.0.12",
     "react": "^16.4.1",
     "react-test-renderer": "^16.4.1"

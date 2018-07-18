@@ -17,5 +17,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "watch": "react-scripts start"
+  },
+  "devDependencies": {
+    "safe-eval": "^0.3.0"
   }
 }

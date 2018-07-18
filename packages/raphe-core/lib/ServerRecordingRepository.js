@@ -89,7 +89,14 @@ var ServerRecordingRepository = function () {
 
               case 6:
                 recordings = _context2.sent;
-                return _context2.abrupt("return", recordings);
+                return _context2.abrupt("return", recordings.map(function (recording) {
+                  return {
+                    id: recording.id,
+                    name: recording.name,
+                    args: JSON.parse(recording.args),
+                    result: JSON.parse(recording.result)
+                  };
+                }));
 
               case 10:
                 _context2.prev = 10;

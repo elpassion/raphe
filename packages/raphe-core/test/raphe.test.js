@@ -1,4 +1,5 @@
-const Raphe = require("../src/Raphe.js");
+import Raphe from "../src/Raphe";
+import serialize from "serialize-javascript";
 
 describe("Raphe.create", () => {
   let recordingRepository;
@@ -30,7 +31,7 @@ describe("Raphe.create", () => {
     });
     expect(recordingRepository.create).toHaveBeenCalledWith({
       name: recordingName,
-      args: fnArgs,
+      args: serialize(fnArgs),
       result: fnResult
     });
   });
@@ -47,7 +48,7 @@ describe("Raphe.create", () => {
     });
     expect(recordingRepository.create).toHaveBeenCalledWith({
       name: recordingName,
-      args: fnArgs,
+      args: serialize(fnArgs),
       result: "2"
     });
   });
@@ -66,7 +67,7 @@ describe("Raphe.create", () => {
     });
     expect(recordingRepository.create).toHaveBeenCalledWith({
       name: recordingName,
-      args: fnArgs,
+      args: serialize(fnArgs),
       result: new SuperError()
     });
   });

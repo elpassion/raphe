@@ -22,7 +22,12 @@ class ServerRecordingRepository {
     try {
       const response = await fetch(`${this.serverUri}/${name}`);
       const recordings = await response.json();
-      return recordings;
+      return recordings.map((recording) => ({
+        id: recording.id,
+        name: recording.name,
+        args: JSON.parse(recording.args),
+        result: JSON.parse(recording.result)
+      }));
     } catch (e) {
       console.warn(e);
     }

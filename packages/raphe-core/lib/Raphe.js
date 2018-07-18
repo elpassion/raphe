@@ -2,10 +2,21 @@
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _lodash = require("lodash.isequalwith");
 
-var isEqualWith = require("lodash.isequalwith");
-var CallFactory = require("./CallFactory");
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _CallFactory = require("./CallFactory");
+
+var _CallFactory2 = _interopRequireDefault(_CallFactory);
+
+var _serializeJavascript = require("serialize-javascript");
+
+var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Raphe = function () {
   function Raphe(_ref) {
@@ -27,15 +38,15 @@ var Raphe = function () {
           callBoth = _ref2.callBoth,
           resultSerializer = _ref2.resultSerializer;
 
-      var callFactory = new CallFactory(expectedErrors);
+      var callFactory = new _CallFactory2.default(expectedErrors);
 
       if (callBoth) {
         var newResult = callFactory.callFor(newFn)(args);
         var oldResult = callFactory.callFor(oldFn)(args);
-        var serializedNewResult = JSON.stringify(resultSerializer ? resultSerializer(newResult) : newResult);
-        var serializedOldResult = JSON.stringify(resultSerializer ? resultSerializer(oldResult) : oldResult);
-        if (!isEqualWith(serializedNewResult, serializedOldResult)) {
-          throw new Error("ResultMismatch");
+        var serializedNewResult = resultSerializer ? resultSerializer(newResult) : newResult;
+        var serializedOldResult = resultSerializer ? resultSerializer(oldResult) : oldResult;
+        if (!(0, _lodash2.default)(serializedNewResult, serializedOldResult)) {
+          throw new Error("ResultMismatch, expected new: " + serializedNewResult + " to equal old: " + serializedOldResult);
         }
         return newResult;
       } else {
@@ -43,7 +54,8 @@ var Raphe = function () {
         var result = callFactory.callFor(calledFunction)(args);
         if (record) {
           var serializedResult = resultSerializer ? resultSerializer(result) : result;
-          this.recordingRepository.create({ name: name, args: args, result: serializedResult });
+          var serializedArgs = (0, _serializeJavascript2.default)(args);
+          this.recordingRepository.create({ name: name, args: serializedArgs, result: serializedResult });
         }
         return result;
       }

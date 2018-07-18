@@ -25,6 +25,10 @@ var _Raphe = require("raphe/lib/Raphe");
 
 var _Raphe2 = _interopRequireDefault(_Raphe);
 
+var _prettyFormat = require("pretty-format");
+
+var _prettyFormat2 = _interopRequireDefault(_prettyFormat);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -35,11 +39,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var ReactTestComponent = _prettyFormat2.default.plugins.ReactTestComponent;
+
+
 var recordingRepository = new _ServerRecordingRepository2.default("http://localhost:3001/recordings");
 var raphe = new _Raphe2.default({ recordingRepository: recordingRepository });
 
 var resultSerializer = exports.resultSerializer = function resultSerializer(result) {
-  return _reactTestRenderer2.default.create(result).toJSON();
+  return (0, _prettyFormat2.default)(_reactTestRenderer2.default.create(result), {
+    plugins: [ReactTestComponent],
+    printFunctionName: false
+  });
 };
 
 var Recording = exports.Recording = function (_React$Component) {
@@ -54,6 +64,10 @@ var Recording = exports.Recording = function (_React$Component) {
   _createClass(Recording, [{
     key: "render",
     value: function render() {
+      if (process.env.NODE_ENV === "test") {
+        console.warn("You are testing a <Recording /> component. It can cause warnings regarding multiple render calls.");
+      }
+
       var _props = this.props,
           name = _props.name,
           options = _objectWithoutProperties(_props, ["name"]);

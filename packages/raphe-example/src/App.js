@@ -20,7 +20,7 @@ class App extends Component {
           <button onClick={this.toggle}>Toggle</button>
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
-          <Toggle on={this.state.on} />
+          <Toggle on={this.state.on} toggle={this.toggle} />
         </header>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.

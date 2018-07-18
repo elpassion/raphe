@@ -1,13 +1,15 @@
 import React from "react";
-import Toggle from "./Toggle";
+import { ToggleImpl } from "./Toggle";
 import { resultSerializer } from "raphe-react";
+import safeEval from "safe-eval";
 
 test("Raphe Toggle", async () => {
   const recordings = await raphe.getAllWithName("Toggle");
-  console.log(recordings.length);
 
   recordings.forEach(recording => {
-    const result = resultSerializer(<Toggle {...recording.args[0]} />);
+    const args = safeEval(`(${recording.args})`);
+    const props = args[0];
+    const result = resultSerializer(<ToggleImpl {...props} />);
     expect(recording.result).toEqual(result);
   });
 });
